@@ -1,7 +1,12 @@
 package spring_demo;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 public class VolleyballCoach implements Coach {
 
+    @Autowired
     private SomeService someService;
     private String someText;
 
