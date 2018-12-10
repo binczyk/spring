@@ -6,8 +6,8 @@
 
     <bean id="reps" class="spring_demo.HoundredService"/>
 
-    <bean id="coach" class="spring_demo.BasketBallCoach">
-        <constructor-arg ref="reps"/>
+    <bean id="coach" class="spring_demo.VolleyballCoach" init-method="init" destroy-method="destroy" scope="prototype">
+        <property ref="reps" name="someService"/>
     </bean>
 
 </beans>
