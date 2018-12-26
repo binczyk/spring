@@ -1,35 +1,28 @@
 package spring_demo;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
 public class VolleyballCoach implements Coach {
 
-    @Autowired
-    private SomeService someService;
     private String someText;
 
-    private VolleyballCoach() {
-        this.someText = "Podbij ";
-    }
 
-    public VolleyballCoach(SomeService someService) {
-        this.someService = someService;
+    private VolleyballCoach(@Qualifier("tenService") SomeService someService, AnotherInterface anotherInterface) {
+        System.out.println("VolleyballCoach(SomeService someService, AnotherInterface anotherInterface)");
+        this.someText = someService.numberOfReps() + anotherInterface.addSomeText();
     }
 
     @Override
     public String getPlan() {
-        String reps = someService.numberOfReps();
+        String reps = "someService.numberOfReps()";
         return this.someText + reps + " razy piłkę";
     }
 
-    public SomeService getSomeService() {
-        return someService;
-    }
-
-    public void setSomeService(SomeService someService) {
-        this.someService = someService;
+    public String getSomeText(@Qualifier("tenService") SomeService someService, AnotherInterface anotherInterface) {
+        System.out.println("getSomeText(SomeService someService, AnotherInterface anotherInterface)");
+        return someService.numberOfReps() + anotherInterface.addSomeText();
     }
 
     public void setSomeText(String someText) {

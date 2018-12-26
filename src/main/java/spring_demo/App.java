@@ -8,9 +8,7 @@ public class App {
 
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
         VolleyballCoach coach = context.getBean("volleyballCoach", VolleyballCoach.class);
-        System.out.println(coach.getPlan());
-        coach.setSomeText("dasdasdasdasd");
-        coach = context.getBean("volleyballCoach", VolleyballCoach.class);
+
         System.out.println(coach.getPlan());
 
         ((ClassPathXmlApplicationContext) context).close();
